@@ -1,7 +1,7 @@
 import pkg from 'pg';
-const { Pool } = pkg;
+const { Client } = pkg;
 
-const pool = new Pool({
+const client = new Client({
     user: "postgres",
     host: "localhost",
     database: "flashcardsdb",
@@ -9,13 +9,13 @@ const pool = new Pool({
     port: 5432
 })
 
-pool
+client 
     .connect()
     .then(() => {
-        console.log("Database is connected.")
+        console.log('Databse is connected.');
     })
     .catch((error) => {
-        console.error("Database failed to connect: " + error)
+        console.error('Databse connection failed: ' + error);
     })
 
-export default {pool}
+export {client};
